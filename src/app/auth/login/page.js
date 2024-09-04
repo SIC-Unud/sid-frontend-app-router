@@ -42,7 +42,6 @@ export default function LoginPage() {
 			router.push('/');
 		} catch (error) {
 			console.log(error);
-
 			setCredentialIsInvalid(true);
 			setFormData(initialFormData);
 		}
@@ -84,7 +83,7 @@ export default function LoginPage() {
 						{/* Remember-Me Switch */}
 						<div className='flex items-center'>
 							<label htmlFor='remember' className='bg-[#00000029] w-9 h-5 rounded-xl flex items-center pl-0.5 cursor-pointer'>
-								<input type='checkbox' id='remember' name='remember' onChange={(e) => handleFormDataChange(e)} className='sr-only peer' />
+								<input type='checkbox' id='remember' name='remember' onChange={(e) => handleFormDataChange(e)} checked={formData.remember} className='sr-only peer' />
 								<span className='bg-white rounded-full w-4 h-4 relative left-px peer-checked:bg-[#888] peer-checked:left-4 shadow-md transition-all duration-500'></span>
 							</label>
 							<label htmlFor='remember' className='text-xs md:text-base font-normal text-[#999C9D] ml-1'>

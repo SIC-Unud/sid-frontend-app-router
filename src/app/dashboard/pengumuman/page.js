@@ -7,6 +7,8 @@ import axiosInstance from '@/utils/axios.util';
 import { API_BASE_URL } from '@/utils/constant.util';
 import { Avatar } from 'flowbite-react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { useRouter } from 'next/navigation';
+import Swal from 'sweetalert2';
 
 const AnnouncementCard = ({ announcement }) => {
 	const cutContent = (text, max) => {
@@ -56,6 +58,7 @@ export default function PengumumanUser() {
 	const limit = 5;
 	const [hasMore, setHasMore] = useState(true);
 	const [user, setUser] = useState(null);
+	const router = useRouter();
 
 	const handleFormSubmit = async (e) => {
 		try {
@@ -79,7 +82,13 @@ export default function PengumumanUser() {
 				},
 			});
 
-			console.log(res);
+			Swal.fire({
+				icon: 'success',
+				title: 'Berhasil',
+				text: 'Berhasil menambah pengumuman',
+			}).then(() => {
+				window.location.reload();
+			});
 		} catch (error) {
 			console.log(error);
 		}

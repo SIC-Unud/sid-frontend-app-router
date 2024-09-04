@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { HiUserCircle } from 'react-icons/hi';
 import { MdOutlineDashboard } from 'react-icons/md';
-import { FiUsers } from 'react-icons/fi';
+import { FiUser, FiUsers } from 'react-icons/fi';
 import { GoChecklist } from 'react-icons/go';
 import { LuLayoutList } from 'react-icons/lu';
 import { LiaBookSolid } from 'react-icons/lia';
@@ -17,17 +17,13 @@ import { usePathname } from 'next/navigation';
 import { Drawer } from 'flowbite-react';
 import sidLogo from '@/../public/logo/sid-logo.png';
 import axiosInstance from '@/utils/axios.util';
+import { IoLibraryOutline } from 'react-icons/io5';
 
 const sidebarItems = [
 	{
 		name: 'Dashboard',
 		href: '/dashboard',
 		icon: MdOutlineDashboard,
-	},
-	{
-		name: 'User',
-		href: '/admin-page/user',
-		icon: FiUsers,
 	},
 	{
 		name: 'Pengumuman',
@@ -49,7 +45,7 @@ const sidebarItems = [
 const sidebarSettings = [
 	{
 		name: 'Profil',
-		href: '/admin-page/profil',
+		href: '/dashboard/profil',
 		icon: HiOutlineUserCircle,
 	},
 ];
@@ -114,12 +110,20 @@ const AuthSidebar = () => {
 							</Drawer.Items>
 						))}
 						{user?.lecturer_account.role == 'admin' && (
-							<Drawer.Items>
-								<Link className={`sidebar-link ${pathname === '' ? 'sidebar-link-active justify-center md:justify-start' : 'justify-center md:justify-start'}`} href='#'>
-									<Icon className='inline-block size-7 md:size-5' />
-									<span className='hidden sm:md:inline-block ml-2'>Jadwal Piket</span>
-								</Link>
-							</Drawer.Items>
+							<>
+								<Drawer.Items>
+									<Link className={`sidebar-link ${pathname === '' ? 'sidebar-link-active justify-center md:justify-start' : 'justify-center md:justify-start'}`} href='#'>
+										<FiUser className='inline-block size-7 md:size-5' />
+										<span className='hidden sm:md:inline-block ml-2'>User</span>
+									</Link>
+								</Drawer.Items>
+								<Drawer.Items>
+									<Link className={`sidebar-link ${pathname === '' ? 'sidebar-link-active justify-center md:justify-start' : 'justify-center md:justify-start'}`} href='#'>
+										<IoLibraryOutline className='inline-block size-7 md:size-5' />
+										<span className='hidden sm:md:inline-block ml-2'>Jadwal Piket</span>
+									</Link>
+								</Drawer.Items>
+							</>
 						)}
 					</nav>
 
