@@ -70,7 +70,7 @@ export default function PublicNavbar() {
 				<div className='flex justify-between items-center '>
 					<Image className='w-16 inline' src={sidLogo} />
 				</div>
-				<ul className='w-auto lg:flex lg:block hidden gap-[56px]'>
+				<ul className='w-auto lg:flex hidden gap-[56px]'>
 					<Nav.Link
 						href='/'
 						className={
@@ -148,46 +148,39 @@ export default function PublicNavbar() {
 				</Button>
 			</Navbar>
 
-			<Container ref={sideBar} className='fixed w-[60%] md:w-[350px] h-full sidebar-bg top-0 right-[-100%] px-4 py-6 transition-all ease-in-out duration-[400ms] z-40'>
-				<Button onClick={hideSidebar} className='m-4'>
-					<FontAwesomeIcon icon={faXmark} size='xl' className='text-white' />
+			<Container ref={sideBar} className='fixed w-[60%] md:w-[350px] h-full sidebar-bg top-0 right-[-100%] p-6 transition-all ease-in-out duration-[400ms] z-40'>
+				<Button onClick={hideSidebar} className='m-4 text-white cursor-pointer'>
+					<FontAwesomeIcon icon={faXmark} size='xl' />
 				</Button>
-				<ul className='w-auto gap-[56px] flex flex-col justify-center align-center'>
-					<Nav.Link
-						href='/'
-						className={
-							pathname === '/'
-								? 'active text-[1.35rem] font-normal w-auto h-auto my-2 md:my-4 px-6 py-1 text-[#2279C9] hover:opacity-[80%]'
-								: 'link text-[1.35rem] text-white font-normal w-auto h-auto my-2 md:my-4 px-6 py-1 hover:text-[#2279C9]'
-						}
-					>
+				<ul className='w-auto gap-16 flex flex-col justify-center align-center m-4'>
+					{user && (
+						<>
+							<div className='text-center text-white space-y-2'>
+								<Avatar img={`${API_BASE_URL}${user.profile_url}`} rounded />
+								<p>{user.name}</p>
+							</div>
+							<Nav.Link href='/dashboard' className={pathname === '/dashboard' ? 'active text-[1.35rem] text-[#2279C9] hover:opacity-[80%]' : 'link text-[1.35rem] text-white hover:text-[#2279C9]'}>
+								User area
+							</Nav.Link>
+						</>
+					)}
+					<Nav.Link href='/' className={pathname === '/' ? 'active text-[1.35rem] text-[#2279C9] hover:opacity-[80%]' : 'link text-[1.35rem] text-white hover:text-[#2279C9]'}>
 						Beranda
 					</Nav.Link>
 					<Nav.Link
 						href='/public-access/informasi'
-						className={
-							pathname === '/public-access/informasi'
-								? 'active text-[1.35rem] font-normal w-auto h-auto my-2 md:my-4 px-6 py-1 text-[#2279C9] hover:opacity-[80%]'
-								: 'link text-[1.35rem] text-white font-normal w-auto h-auto my-2 md:my-4 px-6 py-1 hover:text-[#2279C9]'
-						}
+						className={pathname === '/public-access/informasi' ? 'active text-[1.35rem] text-[#2279C9] hover:opacity-[80%]' : 'link text-[1.35rem] text-white hover:text-[#2279C9]'}
 					>
 						Informasi Dosen
 					</Nav.Link>
-					<Nav.Link
-						href='/public-access/pengumuman'
-						className={
-							pathname === '/public-access/pengumuman'
-								? 'active text-[1.35rem] font-normal w-auto h-auto my-2 md:my-4 px-6 py-1 text-[#2279C9] hover:opacity-[80%]'
-								: 'link text-[1.35rem] text-white font-normal w-auto h-auto my-2 md:my-4 px-6 py-1 hover:text-[#2279C9]'
-						}
-					>
+					<Nav.Link href='/pengumuman' className={pathname === '/pengumuman' ? 'active text-[1.35rem] text-[#2279C9] hover:opacity-[80%]' : 'link text-[1.35rem] text-white hover:text-[#2279C9]'}>
 						Pengumuman
 					</Nav.Link>
 					{!user && (
 						<div className='flex justify-center align-center'>
 							<Button
 								href='/login'
-								className='bg-[#2279C9] text-white font-semibold text-xl duration-200 px-6 py-2 hover:bg-white rounded hover:text-[#2279C9] transition-all ease-in duration-[400ms] w-[120px] flex justify-center align-center'
+								className='bg-[#2279C9] text-white font-semibold text-xl duration-200 px-6 py-2 hover:bg-white rounded hover:text-[#2279C9] transition-all ease-in w-[120px] flex justify-center align-center'
 							>
 								Login
 							</Button>
