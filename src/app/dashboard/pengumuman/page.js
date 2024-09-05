@@ -200,7 +200,7 @@ export default function PengumumanUser() {
 								</div>
 								<div className='space-y-2'>
 									<h6 className='font-medium text-base'>Dokumen pengumuman</h6>
-									<input type='file' name='medias' id='' multiple onChange={(e) => setMedia(e.target.files)} />
+									<input type='file' name='medias' id='' multiple onChange={(e) => setMedia(e.target.files)} className='rounded-lg' />
 									<p className='text-gray-500 font-normal text-xs'>SVG, PNG, JPG or PDF (max. 2MB)</p>
 								</div>
 								<button

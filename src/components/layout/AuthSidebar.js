@@ -14,10 +14,11 @@ import { FiHome } from 'react-icons/fi';
 import { useEffect, useState } from 'react';
 import Keluar from './Keluar';
 import { usePathname } from 'next/navigation';
-import { Drawer } from 'flowbite-react';
+import { Avatar, Drawer } from 'flowbite-react';
 import sidLogo from '@/../public/logo/sid-logo.png';
 import axiosInstance from '@/utils/axios.util';
 import { IoLibraryOutline } from 'react-icons/io5';
+import { API_BASE_URL } from '@/utils/constant.util';
 
 const sidebarItems = [
 	{
@@ -84,11 +85,9 @@ const AuthSidebar = () => {
 			<Drawer open={isOpen} onClose={handleClose} className='bg-biru-dongker text-white'>
 				{user && (
 					<Drawer.Items>
-						<div className='flex flex-col items-center p-5 md:flex-row'>
-							<div className='w-full md:w-auto flex justify-center md:justify-start'>
-								<HiUserCircle className='inline-block size-16 md:size-12' />
-							</div>
-							<span className='sm:md:ml-2 font-medium text-center md:text-start'>{user.name}</span>
+						<div className='flex flex-row justify-center items-center p-5 gap-4 md:justify-start'>
+							<Avatar img={`${API_BASE_URL}${user.profile_url}`} rounded />
+							<span className='font-medium'>{user.name}</span>
 						</div>
 					</Drawer.Items>
 				)}
