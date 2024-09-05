@@ -3,7 +3,7 @@ import AuthSidebar from '@/components/layout/AuthSidebar';
 
 export default function AuthLayout({ children }) {
 	return (
-		<div className='relative min-h-full max-h-[100vh]'>
+		<div className='relative h-full'>
 			<AuthSidebar />
 			{children}
 		</div>

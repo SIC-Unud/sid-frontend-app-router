@@ -34,6 +34,7 @@ export default function PublicNavbar() {
 			const res = await axiosInstance.get('/api/user/authenticated-user', {
 				withCredentials: true,
 			});
+			console.log(res);
 
 			setUser(res.data.user);
 		} catch (error) {
@@ -53,7 +54,9 @@ export default function PublicNavbar() {
 		try {
 			await axiosInstance.get('/api/public/logout', { withCredentials: true });
 			router.push('/auth/login');
-		} catch (error) {}
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	// Don't render anything until loading done
@@ -132,7 +135,7 @@ export default function PublicNavbar() {
 								</Dropdown.Item>
 								<Dropdown.Divider />
 								<Dropdown.Item>
-									<span onClick={handleLogout}>Keluar</span>
+									<span onClick={() => handleLogout()}>Keluar</span>
 								</Dropdown.Item>
 							</Dropdown>
 						)

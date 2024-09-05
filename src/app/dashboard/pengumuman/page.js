@@ -7,6 +7,8 @@ import axiosInstance from '@/utils/axios.util';
 import { API_BASE_URL } from '@/utils/constant.util';
 import { Avatar } from 'flowbite-react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { useRouter } from 'next/navigation';
+import Swal from 'sweetalert2';
 
 const AnnouncementCard = ({ announcement }) => {
 	const cutContent = (text, max) => {
@@ -56,6 +58,7 @@ export default function PengumumanUser() {
 	const limit = 5;
 	const [hasMore, setHasMore] = useState(true);
 	const [user, setUser] = useState(null);
+	const router = useRouter();
 
 	const handleFormSubmit = async (e) => {
 		try {
@@ -79,7 +82,13 @@ export default function PengumumanUser() {
 				},
 			});
 
-			console.log(res);
+			Swal.fire({
+				icon: 'success',
+				title: 'Berhasil',
+				text: 'Berhasil menambah pengumuman',
+			}).then(() => {
+				window.location.reload();
+			});
 		} catch (error) {
 			console.log(error);
 		}
@@ -191,7 +200,7 @@ export default function PengumumanUser() {
 								</div>
 								<div className='space-y-2'>
 									<h6 className='font-medium text-base'>Dokumen pengumuman</h6>
-									<input type='file' name='medias' id='' multiple onChange={(e) => setMedia(e.target.files)} />
+									<input type='file' name='medias' id='' multiple onChange={(e) => setMedia(e.target.files)} className='rounded-lg' />
 									<p className='text-gray-500 font-normal text-xs'>SVG, PNG, JPG or PDF (max. 2MB)</p>
 								</div>
 								<button
