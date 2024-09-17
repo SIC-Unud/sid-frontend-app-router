@@ -3,7 +3,7 @@
 import axiosInstance from '@/utils/axios.util';
 import { API_BASE_URL } from '@/utils/constant.util';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Swal from 'sweetalert2';
 
 export default function DashboardProfile() {
@@ -22,6 +22,7 @@ export default function DashboardProfile() {
 		nip: '',
 	});
 	const [profilePictureUrl, setProfilePictureUrl] = useState('');
+	const avatarInput = useRef();
 
 	const getAuthenticatedUser = async () => {
 		try {
@@ -88,6 +89,10 @@ export default function DashboardProfile() {
 		}
 	};
 
+	const handleEditFotoClick = () => {
+		avatarInput.current.click();
+	};
+
 	useEffect(() => {
 		getAuthenticatedUser();
 	}, []);
@@ -101,8 +106,13 @@ export default function DashboardProfile() {
 				<div className='flex flex-col md:flex-row gap-4'>
 					<div className='basis-2/5'>
 						<div className='w-full max-w-[80%] mx-auto space-y-4'>
-							<img src={profilePictureUrl} alt='foto profil' className='w-full mx-auto object-cover' />
-							<input type='file' name='avatar' onChange={(e) => handleFileInputOnChange(e)} className='rounded-lg' />
+							<div className='relative'>
+								<img src={profilePictureUrl} alt='foto profil' className='w-full mx-auto object-cover' />
+								<div onClick={(e) => handleEditFotoClick()} className='absolute bottom-0 w-full p-4 bg-black/70 text-white text-center font-bold text-lg lg:text-xl'>
+									Edit foto
+								</div>
+								<input ref={avatarInput} type='file' name='avatar' onChange={(e) => handleFileInputOnChange(e)} className='hidden' accept='image/png, image/jpeg' />
+							</div>
 						</div>
 					</div>
 					<div className='w-full basis-3/5'>
