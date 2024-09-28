@@ -81,16 +81,16 @@ export default function PublicNavbar() {
 					>
 						Beranda
 					</Nav.Link>
-					{/* <Nav.Link
-						href='/public-access/informasi'
+					<Nav.Link
+						href='/informasi-dosen'
 						className={
-							pathname === '/public-access/informasi'
+							pathname === '/informasi-dosen'
 								? 'active text-xl font-normal w-auto h-auto my-6 md:my-0 px-6 py-1 text-[#2279C9] hover:opacity-[80%]'
 								: 'link text-xl text-white font-normal w-auto h-auto my-6 md:my-0 px-6 py-1 hover:text-[#2279C9]'
 						}
 					>
 						Informasi Dosen
-					</Nav.Link> */}
+					</Nav.Link>
 					<Nav.Link
 						href='/pengumuman'
 						className={
@@ -144,7 +144,7 @@ export default function PublicNavbar() {
 					)}
 				</ul>
 				<Button onClick={showSidebar} className='lg:hidden block'>
-					<FontAwesomeIcon icon={faBars} size='xl' className='text-white' />
+					<FontAwesomeIcon icon={faBars} size='2xl' className='text-white' />
 				</Button>
 			</Navbar>
 
